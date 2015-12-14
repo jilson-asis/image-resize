@@ -10,12 +10,10 @@ First use the imageResizer class in your controller
 
 Then you can use method chaining.
 
-`
-$image_path = 'your_image_path';
-$image_ext = 'your_image_extension'; // can only process jpg and png.
+`$image_path = 'your_image_path';`
+`$image_ext = 'your_image_extension'; // can only process jpg and png.`
 
-ImageResizer::src($image_path, $image_ext)->maxHeight(640)->maxWidth(800)->quality(80)->save();
-`
+`ImageResizer::src($image_path, $image_ext)->maxHeight(640)->maxWidth(800)->quality(80)->save();`
 
 ## Installation
 
