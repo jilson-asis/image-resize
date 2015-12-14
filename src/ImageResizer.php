@@ -1,7 +1,5 @@
 <?php
-
 namespace jilsonasis\ImageResizer;
-
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 /**
@@ -24,12 +22,16 @@ class ImageResizer
     private $output_height;
 
 
-    public function src($src)
+    public function src($src, $ext = null)
     {
         if (!is_file($src)) throw new FileNotFoundException($src);
-        $info = new \SplFileInfo($src);
         $this->src = $src;
-        $this->ext = strtoupper($info->getExtension());
+        if (!$ext) {
+            $info = new \SplFileInfo($src);
+            $this->ext = strtoupper($info->getExtension());
+        } else {
+            $this->ext = strtoupper($ext);
+        }
 
         if(is_file($src) && ($this->ext == "JPG" OR $this->ext == "JPEG")) {
             $this->image = ImageCreateFromJPEG($src);
@@ -75,9 +77,23 @@ class ImageResizer
             if ($is_set_to_landscape) { // follow the height
                 $this->output_height = $this->max_height;
                 $this->output_width = $this->max_height * $this->input_width / $this->input_height;
+                // double check
+                if ($this->output_width > $this->max_width) {
+                    $old_width = $this->output_width;
+                    $old_height = $this->output_height;
+                    $this->output_width = $this->max_width;
+                    $this->output_height = $old_height * $this->max_width / $old_width;
+                }
             } else { // follow the width
                 $this->output_width = $this->max_width;
                 $this->output_height = $this->max_width * $this->input_height / $this->input_width;
+                // double check
+                if ($this->output_height > $this->max_height) {
+                    $old_width = $this->output_width;
+                    $old_height = $this->output_height;
+                    $this->output_height = $this->max_height;
+                    $this->output_height = $old_width * $this->max_height / $old_height;
+                }
             }
         } else {
             $this->output_width = $this->input_width;

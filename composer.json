@@ -11,6 +11,11 @@
             "email": "jilson.asis7@gmail.com"
         }
     ],
-    "preferred-install": "dev",
-    "require": {}
+    "require": {},
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jilson-asis/image-resize.git"
+        }
+    ],
 }
