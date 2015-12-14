@@ -1,5 +1,5 @@
 {
-    "name": "jilson-asis/image-resizer",
+    "name": "jasis/image-resizer",
     "type": "library",
     "description": "Image resizer library for laravel",
     "keywords": ["image", "resize"],
