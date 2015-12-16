@@ -9,5 +9,10 @@
             "name": "Jilson Asis",
             "email": "jilson.asis7@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "jilsonasis\\ImageResizer\\": "src"
+        }
+    }
 }
