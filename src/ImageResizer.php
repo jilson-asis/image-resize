@@ -67,8 +67,6 @@ class ImageResizer
 
     public function save()
     {
-//        $is_landscape = ($this->input_height < $this->input_width);
-//        $is_square = ($this->input_height == $this->input_width);
         $is_width_exceeded = ($this->input_width > $this->max_width);
         $is_height_exceeded = ($this->input_height > $this->max_height);
         $is_set_to_landscape = ($this->max_width > $this->max_height);
